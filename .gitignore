@@ -1,5 +1,11 @@
+mvnw
+mvnw.cmd
+HELP.md
+.DS_Store
+**/.DS_Store
 # Compiled class file
 *.class
+target/
 
 # Log file
 *.log
