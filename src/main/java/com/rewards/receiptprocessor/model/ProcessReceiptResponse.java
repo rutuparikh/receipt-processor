@@ -1,8 +1,9 @@
 package com.rewards.receiptprocessor.model;
 
-import java.util.UUID;
+import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReceiptId {
+@Component
+@Builder
+
+public class ProcessReceiptResponse {
 	
-	private UUID id;
+	private String id;
 }

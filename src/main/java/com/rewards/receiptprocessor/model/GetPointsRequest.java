@@ -1,7 +1,5 @@
 package com.rewards.receiptprocessor.model;
 
-import org.springframework.stereotype.Component;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,9 +10,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
 @Builder
-public class GetPointsResponse {
+public class GetPointsRequest {
 	
-	private int points;
+	private String id;
 }

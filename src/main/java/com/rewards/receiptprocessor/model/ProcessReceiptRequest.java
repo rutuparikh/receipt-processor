@@ -26,8 +26,7 @@ public class ProcessReceiptRequest {
 	@NonNull
 	private String retailer;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date purchaseDate;
+	private String purchaseDate;
 	
 	private String purchaseTime;
 	
