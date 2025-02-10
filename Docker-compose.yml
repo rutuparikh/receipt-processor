@@ -1,0 +1,28 @@
+services:
+  redis: 
+    image: redis:latest
+    container_name: redis-server
+    ports: 
+      - "6379:6379"
+    networks:
+      - app-network
+ 
+  receipt-processor-app:
+    image: openjdk:17-jdk-slim
+    container_name: receipt-processor
+    ports: 
+      - "8080:8080"
+    volumes: 
+      - ./target/receipt-processor-0.0.1-SNAPSHOT.jar:/app/receipt-processor.jar
+    command: java -jar /app/receipt-processor.jar
+    depends_on:
+      - redis
+    environment:
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

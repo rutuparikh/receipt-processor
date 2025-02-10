@@ -26,22 +26,16 @@ public class ReceiptProcessorController {
 	@Autowired
     private ReceiptProcessorService receiptProcessor;
 	
-	@GetMapping("/")
-	public String index() {
-		log.info("Home Page");
-		return "Hello from Receipt Processor!";
-	}
-	
 	@GetMapping("/{id}/points")
-	public ResponseEntity<GetPointsResponse> getPoints(@PathVariable(required = true) String id) {
-		ResponseEntity<GetPointsResponse> response = receiptProcessor.getPoints(id);
+	public ResponseEntity<Object> getPoints(@PathVariable(required = true) String id) {
+		ResponseEntity<Object> response = receiptProcessor.getPoints(id);
 		return response;
 		
 	}
 	
 	@PostMapping(value = "/process", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<ProcessReceiptResponse> processReceipt(@RequestBody ProcessReceiptRequest request) {
-		ResponseEntity<ProcessReceiptResponse> response = receiptProcessor.processReceipt(request);
+	public ResponseEntity<Object> processReceipt(@RequestBody (required=true) ProcessReceiptRequest request) {
+		ResponseEntity<Object> response = receiptProcessor.processReceipt(request);
 		return response;
 	}
 

@@ -32,6 +32,6 @@ public class ProcessReceiptRequest {
 	
 	private Item[] items;
 	
-	private float total;
+	private String total;
 	
 }

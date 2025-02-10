@@ -16,7 +16,7 @@ import lombok.Setter;
 @Component
 @Builder
 @Data
-public class GetPointsResponse {
+public class FailureResponse {
 	
-	private int points;
+	private String description;
 }
