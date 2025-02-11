@@ -31,9 +31,9 @@ The service is published at HTTP port 8080.
  
 ## Future enhancements
 1. Cloud Architecture
-   ![image](https://github.com/user-attachments/assets/548c2220-afe6-4eeb-acc4-c113541a1f16)
+   ![image](https://github.com/user-attachments/assets/416ab6ac-4867-492d-be75-07993f8d8d1d)
 
-3. Security
+2. Security
     - HTTPS encryption
     - Rate limiting
     - Authenticate users using OAuth
