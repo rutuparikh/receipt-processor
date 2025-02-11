@@ -14,7 +14,7 @@ This is a dockerized setup, to run the service, clone and execute below command 
 ```
 docker compose up
 ```
-The service is published at port 8080. 
+The service is published at HTTP port 8080. 
 
 ## Following APIs are exposed:
 - process receipt
