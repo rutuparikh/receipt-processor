@@ -34,6 +34,6 @@ The service is published at HTTP port 8080.
    ![image](https://github.com/user-attachments/assets/548c2220-afe6-4eeb-acc4-c113541a1f16)
 
 3. Security
-    - Https encryption
+    - HTTPS encryption
     - Rate limiting
-    - Authentication users using OAuth
+    - Authenticate users using OAuth
