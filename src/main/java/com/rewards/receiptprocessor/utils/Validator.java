@@ -46,8 +46,10 @@ public class Validator {
 	        return true;
 	    }
 	    catch (ParseException e) {
+	    	
 	    	log.error(e);
-	        return false;
+	        
+	    	return false;
 	    }
 	}
 	
@@ -61,8 +63,10 @@ public class Validator {
         	return true;
             
         } catch (Exception e) {
+        	
         	log.error(e);
-            return false;
+            
+        	return false;
         }
     }
 	
@@ -79,8 +83,6 @@ public class Validator {
 	
 	public boolean isValidRetailer(String retailer) {
 		
-		System.out.println(retailer);
-		
 		try {
 			Pattern pattern = Pattern.compile(retailerRegex);
 	        Matcher matcher = pattern.matcher(retailer);
@@ -88,15 +90,14 @@ public class Validator {
 	        return matcher.matches();
 	        
 		} catch(Exception e) {
-			log.error(e.toString());
-			e.printStackTrace();
+			
+			log.error(e);
+			
 			return false;
 		}
 	}
 	
 	public boolean isValidDescription(String description) {
-		
-		System.out.println(description);
 		
 		try {
 			Pattern pattern = Pattern.compile(descriptionRegex);
@@ -105,15 +106,14 @@ public class Validator {
 	        return matcher.matches();
 	        
 		} catch(Exception e) {
-			log.error(e.toString());
-			e.printStackTrace();
+			
+			log.error(e);
+			
 			return false;
 		}
 	}
 	
 	public boolean isValidAmount(String amount) {
-		
-		System.out.println(amount);
 		
 		try {
 			Pattern pattern = Pattern.compile(amountRegex);
@@ -122,8 +122,9 @@ public class Validator {
 	        return matcher.matches();
 	        
 		} catch(Exception e) {
-			log.error(e.toString());
-			e.printStackTrace();
+			
+			log.error(e);
+			
 			return false;
 		}
 	}
