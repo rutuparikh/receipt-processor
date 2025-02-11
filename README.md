@@ -1,6 +1,6 @@
 # Receipt Processor
 
-Receipt Processor is a webservice that accepts receipts of retail shopping and generates points for each of them. It fulfills the API definition provided at [api.yml](https://github.com/fetch-rewards/receipt-processor-challenge/blob/main/api.yml).
+Receipt Processor is a webservice that accepts receipts of retail shopping and generates points for each of them. It fulfills the API definition provided at [api.yml](https://github.com/rutuparikh/receipt-processor/blob/main/api.yml).
 
 ## Technology stack & development tools
 - Java (Spring Boot)
