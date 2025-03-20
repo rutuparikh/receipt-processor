@@ -6,17 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Component
 @Builder
 @Data
+@AllArgsConstructor
 public class GetPointsResponse {
 	
-	private int points;
+	private final int points;
 }

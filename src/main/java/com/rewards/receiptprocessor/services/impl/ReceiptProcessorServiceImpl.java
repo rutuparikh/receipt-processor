@@ -22,13 +22,15 @@ import com.rewards.receiptprocessor.model.responses.ProcessReceiptResponse;
 import com.rewards.receiptprocessor.services.ReceiptProcessorService;
 import com.rewards.receiptprocessor.utils.Validator;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class ReceiptProcessorServiceImpl implements ReceiptProcessorService {
 
 	private static final Logger log = LogManager.getLogger(ReceiptProcessorServiceImpl.class);
 
-	@Autowired
-	private RedisTemplate<String, Object> redisTemplate;
+	private final RedisTemplate<String, Object> redisTemplate;
 
 	private HashOperations<String, String, Object> hashOperations;
 
@@ -36,9 +38,12 @@ public class ReceiptProcessorServiceImpl implements ReceiptProcessorService {
 	public void setHashOperations() {
 		this.hashOperations = redisTemplate.opsForHash();
 	}
-
-	@Autowired
-	Validator validator;
+	
+	private final Validator validator;
+//	public ReceiptProcessorServiceImpl(Validator validator, RedisTemplate<String, Object> redisTemplate) {
+//		this.validator = validator;
+//		this.redisTemplate = redisTemplate;
+//	} 
 
 	@Override
 	public ResponseEntity<ProcessReceiptResponse> processReceipt(ProcessReceiptRequest receipt)
@@ -109,7 +114,7 @@ public class ReceiptProcessorServiceImpl implements ReceiptProcessorService {
 
 	}
 
-	private void savePoints(String uuid, int points) {
+	private void savePoints(String uuid, int points) throws ReceiptProcessorException {
 
 		log.debug("saving points...");
 
@@ -124,14 +129,36 @@ public class ReceiptProcessorServiceImpl implements ReceiptProcessorService {
 			hashOperations.putAll(uuid, data);
 
 			log.info("Receipt ID and points saved");
+			
+			updatePoints(uuid, points+5);
 
 		} catch (Exception e) {
 
 			log.error(e);
+			
+			throw new ReceiptProcessorException("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR,
+					"Internal Server Error");
+			
 		}
 	}
+	
+	private void updatePoints(String uuid, int points) throws ReceiptProcessorException {
+		
+		log.debug("updating points...");
+		
+		hashOperations.put(uuid, "points", points);
+		log.info("Points updated.");
+//		hashOperations.delete(uuid, "points");
+		redisTemplate.delete(uuid);
+		
+//		redisTemplate.opsForValue().set(uuid, points);
+		
+		log.info("Points deleted.");
+		
+		
+	}
 
-	private int calculatePoints(ProcessReceiptRequest receipt) {
+	private int calculatePoints(ProcessReceiptRequest receipt) throws ReceiptProcessorException {
 
 		log.debug("calculating points...");
 
@@ -193,7 +220,8 @@ public class ReceiptProcessorServiceImpl implements ReceiptProcessorService {
 			
 			log.error(e);
 
-			return 0;
+			throw new ReceiptProcessorException("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR,
+					"Internal Server Error");
 		}
 
 	}

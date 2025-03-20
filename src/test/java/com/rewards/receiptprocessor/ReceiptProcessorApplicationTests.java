@@ -12,8 +12,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import com.rewards.receiptprocessor.controller.ReceiptProcessorController;
 import com.rewards.receiptprocessor.services.ReceiptProcessorService;
 
+import lombok.RequiredArgsConstructor;
+
 @SpringBootTest
-class ReceiptprocessorApplicationTests {
+class ReceiptProcessorApplicationTests {
 
 	@Autowired
     private ReceiptProcessorController receiptProcessorController;
